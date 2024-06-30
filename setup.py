@@ -60,7 +60,7 @@ PyCryptodome
 PyCryptodome is a self-contained Python package of low-level
 cryptographic primitives.
 
-It supports Python 2.7, Python 3.5 and newer, and PyPy.
+It supports Python 2.7, Python 3.6 and newer, and PyPy.
 
 You can install it with::
 
@@ -78,7 +78,7 @@ for instance:
 * Authenticated encryption modes (GCM, CCM, EAX, SIV, OCB)
 * Accelerated AES on Intel platforms via AES-NI
 * First class support for PyPy
-* Elliptic curves cryptography (NIST P-curves; Ed25519, Ed448)
+* Elliptic curves cryptography (NIST P-curves; Ed25519, Ed448, Curve25519)
 * Better and more compact API (`nonce` and `iv` attributes for ciphers,
   automatic generation of random nonces and IVs, simplified CTR cipher mode,
   and more)
@@ -445,9 +445,9 @@ ext_modules = [
                  'src/p521_table.c'],
         py_limited_api=True,
         ),
-    Extension("Crypto.PublicKey._x25519",
+    Extension("Crypto.PublicKey._curve25519",
         include_dirs=['src/'],
-        sources=['src/x25519.c'],
+        sources=['src/curve25519.c'],
         py_limited_api=True,
         ),
     Extension("Crypto.PublicKey._ed25519",
@@ -507,11 +507,10 @@ setup(
     url="https://www.pycryptodome.org",
     platforms='Posix; MacOS X; Windows',
     zip_safe=False,
-    python_requires='>=2.7, !=3.0.*, !=3.1.*, !=3.2.*, !=3.3.*, !=3.4.*',
+    python_requires='>=2.7, !=3.0.*, !=3.1.*, !=3.2.*, !=3.3.*, !=3.4.*, !=3.5.*',
     classifiers=[
         'Development Status :: 5 - Production/Stable',
         'License :: OSI Approved :: BSD License',
-        'License :: OSI Approved :: Apache Software License',
         'License :: Public Domain',
         'Intended Audience :: Developers',
         'Operating System :: Unix',
@@ -521,7 +520,6 @@ setup(
         'Programming Language :: Python :: 2',
         'Programming Language :: Python :: 2.7',
         'Programming Language :: Python :: 3',
-        'Programming Language :: Python :: 3.5',
         'Programming Language :: Python :: 3.6',
         'Programming Language :: Python :: 3.7',
         'Programming Language :: Python :: 3.8',
